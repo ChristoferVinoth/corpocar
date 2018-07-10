@@ -22,16 +22,14 @@ html,body{
 	font-family: 'Helvetica', sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-	color: #fff;
-	background-color: #9a1101;
+	color: #000;
+	background-color: #fff;
 }
 
-/*
-Colors
 
-	#fff - bg white
-	#9a1101 - dark red
-	#fe6958 - light red
-	#ef1a01 - bright red
-	#350600 - backgroud red
-*/
+/********************************************
+
+Color light: #DF373B;
+Color dark: #85151e;
+
+*********************************************/
