@@ -26,6 +26,31 @@ html,body{
 	background-color: #fff;
 }
 
+.alert, .notice {
+    padding: 20px;
+    color: #000;
+}
+
+.alert{
+	background-color: #f2dede;
+	border: 1px solid #ebccd1;
+}
+
+.notice{
+	background-color: #fcf8e3;
+	border: 2px solid #faebcc;
+}
+
+.closebtn {
+    margin-left: 15px;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    color: #000;
+    line-height: 20px;
+    cursor: pointer;
+}
+
 
 /********************************************
 
