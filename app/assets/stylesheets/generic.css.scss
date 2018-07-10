@@ -10,11 +10,20 @@ header{
 		font-size: 350%;
 		font-weight: 300;
 		letter-spacing: 2px;
+		display: inline-block;
 	}
 
 	span{
 		color: #DF373B;
 		font-weight: 400;
+	}
+
+	div{
+		float: right;
+		text-align: right;
+		font-size: 18px;
+		margin-top: 10px;
+		margin-right: 20px;
 	}
 
 }
@@ -37,4 +46,16 @@ header{
 
 .btn:hover, .btn:active{
 	background-color: #85151e;
+}
+
+.txt-btn:link, .txt-btn:visited {
+	color: #111;
+	font-weight: 400;
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	transition: 0.3s all;
+}
+
+.txt-btn:hover, .txt-btn:active{
+	border-bottom: 2px solid #DF373B;
 }

@@ -1,1 +1,11 @@
-<header><h1>Car<span>Po</span>Cor</h1></header>
+<header>
+	<h1>
+		Car<span>Po</span>Cor
+	</h1>
+	<div>
+		<% if user_signed_in? %>
+			<%= "Hello #{current_user.email}" %><br>
+			<%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "txt-btn" %>
+		<% end %>
+	</div>
+</header>

@@ -1,16 +1,16 @@
-
 <div class="home-wrapper">
-	<p class="text-area">
-		Random text Random text Random text Random text<br>
-		Random text Random text Random text Random text Random text Random textRandom text Random text Random text<br>
-		Random text Random text Random text Random text <br>
-	</p>
-	<p class="button-container">
-		<%= link_to "Login", new_user_session_path, class: "btn"%>
-		<%= link_to "Signup", new_user_registration_path, class: "btn" %>
-		<%= link_to "Signout", destroy_user_session_path, method: :delete, class: "btn" %>
-
-	</p>
-	<%=image_tag("index-bg.jpg")%>
+	<% if user_signed_in? %>
+		Content getting ready
+	<% else %>
+		<p class="text-area">
+			Random text Random text Random text Random text<br>
+			Random text Random text Random text Random text Random text Random textRandom text Random text Random text<br>
+			Random text Random text Random text Random text <br>
+		</p>
+		<p class="button-container">
+			<%= link_to "Login", new_user_session_path, class: "btn"%>
+			<%= link_to "Signup", new_user_registration_path, class: "btn" %>
+		</p>
+		<%=image_tag("index-bg.jpg")%>
+	<% end %>
 </div>
->>>>>>> 5e6fac9807c58a14af2ef442efe0b93c9e38c6d4
