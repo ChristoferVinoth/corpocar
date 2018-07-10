@@ -1,5 +1,5 @@
 class CreateTripTable < ActiveRecord::Migration
-  def up
+  def change
     create_table :trips do |t|
       t.string :driver_emp_id
       t.string :origin
@@ -9,6 +9,4 @@ class CreateTripTable < ActiveRecord::Migration
     end
   end
 
-  def down
-  end
 end

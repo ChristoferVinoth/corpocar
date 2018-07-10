@@ -1,5 +1,5 @@
 class CreateRequestTable < ActiveRecord::Migration
-  def up
+  def change
     create_table :requests do |t|
       t.string  :rider_emp_id
       t.integer :trip_id
@@ -7,6 +7,4 @@ class CreateRequestTable < ActiveRecord::Migration
     end
   end
 
-  def down
-  end
 end
