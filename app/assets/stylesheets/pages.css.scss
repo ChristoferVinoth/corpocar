@@ -1,0 +1,23 @@
+.home-wrapper{
+	width: 100%;
+	position: relative;
+
+	p.text-area{
+		text-align: center;
+		margin: 20px 0;
+	}
+
+	img{
+		height: 50%;
+		width: 50%;
+		margin-left: 25%;
+		margin-top: 20px;
+	}
+
+	p.button-container{
+		text-align: center;
+		a{
+			margin: 20px;
+		}
+	}
+}
