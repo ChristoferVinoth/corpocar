@@ -11,3 +11,27 @@
  *= require_self
  *= require_tree .
  */
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,body{
+	font-family: 'Helvetica', sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+	color: #fff;
+	background-color: #9a1101;
+}
+
+/*
+Colors
+
+	#fff - bg white
+	#9a1101 - dark red
+	#fe6958 - light red
+	#ef1a01 - bright red
+	#350600 - backgroud red
+*/
