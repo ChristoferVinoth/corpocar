@@ -1,0 +1,28 @@
+<h1> New trip</h1>
+
+
+<%= form_for @trip do |f| %>
+<div>
+<%= f.label :employee_Id %>
+<%= f.text_field :driver_id %>
+</div>
+<div>
+<%= f.label :origin %>
+<%= f.text_field :origin %>
+</div>
+<div>
+<%= f.label :destination %>
+<%= f.text_field :destination %>
+</div>
+<div>
+<%= f.label :start_time %>
+<%= f.text_field :start_time %>
+</div>
+<div>
+<%= f.label :available_seats %>
+<%= f.text_field :available_seats %>
+</div>
+<div>
+<%= f.submit%>
+</div>
+<% end %>

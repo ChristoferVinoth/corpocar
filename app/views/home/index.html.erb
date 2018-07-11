@@ -1,6 +1,10 @@
 <div class="home-wrapper">
 	<% if user_signed_in? %>
-		Content getting ready
+		<%= link_to 'Driver', new_trip_path %>
+		<%= link_to 'Rider', '#'%>
+		<p>
+			hey geo... animate the signout button... like background is having a car image starting to ride
+		</p>
 	<% else %>
 		<p class="text-area">
 			Random text Random text Random text Random text<br>
