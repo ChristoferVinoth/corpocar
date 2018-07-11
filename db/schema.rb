@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180710061716) do
+ActiveRecord::Schema.define(:version => 20180711061027) do
 
   create_table "requests", :force => true do |t|
-    t.string  "rider_emp_id"
+    t.integer "rider_id",  :limit => 255
     t.integer "trip_id"
     t.boolean "confirmed"
   end
 
   create_table "trips", :force => true do |t|
-    t.string   "driver_emp_id"
+    t.integer  "driver_id",       :limit => 255
     t.string   "origin"
     t.string   "destination"
     t.datetime "start_time"
@@ -29,14 +29,14 @@ ActiveRecord::Schema.define(:version => 20180710061716) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "employee_id"
+    t.integer  "employee_id",            :limit => 255
     t.string   "mobile_no"
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",                    :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",                         :default => 0,  :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
