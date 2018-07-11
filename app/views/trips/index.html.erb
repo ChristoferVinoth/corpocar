@@ -1,3 +1,9 @@
 <h1> List </h1>
 
-<%= @trips %>
+<% @trips.each do |x| %>
+ <div id="tr">
+       Trip :  <%= x.origin %> 
+       To  <%= x.destination %> <br>
+        StartTime :<%= x.start_time %>
+    </div>
+ <% end %>
