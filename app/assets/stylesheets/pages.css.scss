@@ -55,3 +55,11 @@ header{
 		}
 	}
 }
+
+/***************** Password reset page devise/passwords/new.html.erb ************************/
+
+.reset-pass{
+	input[type="button"], input[type="submit"], input[type="reset"] {
+		width: 350px;
+	}
+}
