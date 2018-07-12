@@ -4,7 +4,9 @@ Carpocor::Application.routes.draw do
 
   root to: 'home#index'
 
-  resources :trips 
+  resources :trips
+
+  resources :requests, only: [:create]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

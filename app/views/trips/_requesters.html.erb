@@ -1,0 +1,9 @@
+<div class="requesters-list">
+  <b> Requesters : </b><br/>
+  <% if @trip.present? %>
+    <% @trip.requests.each do |req|%>
+    Name : <%= req.rider.name %>,
+    Status : <%= req.confirmed ? 'Confirmed' : 'Waiting' %> <br/>
+    <% end %>
+  <%end%>
+</div>

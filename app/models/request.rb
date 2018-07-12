@@ -1,5 +1,4 @@
 class Request < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :rider, foreign_key: "user_id"
+  belongs_to :rider, class_name: "User"
   belongs_to :trip
 end

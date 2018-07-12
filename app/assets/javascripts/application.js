@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function(){
+  $('#request-link').on('ajax:complete', function(event, data, status){
+    $('#requesters').html(data.responseText)
+  })
+})
