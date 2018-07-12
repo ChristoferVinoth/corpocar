@@ -3,7 +3,7 @@
   <% if @trip.present? %>
     <% @trip.requests.each do |req|%>
     Name : <%= req.rider.name %>,
-    Status : <%= req.confirmed ? 'Confirmed' : 'Waiting' %> <br/>
+    Status : <%= req.confirmed ? 'Confirmed' : 'Waiting' %> <br/><br/>  
     <% end %>
   <%end%>
 </div>

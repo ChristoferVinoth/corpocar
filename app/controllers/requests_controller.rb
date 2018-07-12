@@ -10,4 +10,16 @@ class RequestsController < ApplicationController
       render partial: 'trips/requesters'
     end
   end
+
+  def create_driver_request
+    puts "#{params[:id]}"
+    @request = Request.new
+    @request.rider_id = current_user.id
+    @request.trip_id = params[:id]
+    @request.confirmed = true
+    if @request.save
+      @trip = Trip.find(params[:id])
+      redirect_to trip_path(@trip)
+    end
+  end
 end
