@@ -107,7 +107,8 @@ form{
 }
 
 .redirect-links{
-	margin-left: 25%;
+	text-align: right;
+	margin-right: 25%;
 	margin-top: 10px;
 	a{
 		margin: 10px;
@@ -132,7 +133,7 @@ form{
 		font-weight: 300;
 		list-style-type: none;
 	}
-	
+
 	li:before{
 		content: "→ ";
 	}

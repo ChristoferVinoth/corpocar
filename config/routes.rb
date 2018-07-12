@@ -4,7 +4,11 @@ Carpocor::Application.routes.draw do
 
   root to: 'home#index'
 
-  resources :trips 
+  resources :trips
+
+  resources :requests, only: [:create]
+
+  get 'create_driver_request', to: 'requests#create_driver_request'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

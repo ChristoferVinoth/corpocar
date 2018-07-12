@@ -1,0 +1,44 @@
+<h2> Trip : <%= @trip.origin %> to <%= @trip.destination %> </h2>
+<div style="margin-left: 100px">
+<% if current_user.is_rider? %>
+<div>
+  <b>Owner Details : </b> <br/>
+  Name :  <%= @trip.driver.name %> <br/>
+  Mobile no : <%= @trip.driver.mobile_no %><br/>
+</div>
+<br/>
+<div>
+  <b> Trip Details : </b><br/>
+  Starting Time : <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br/>
+  Available Seats : <%= @trip.available_seats %><br/>
+  <% if @trip.available_seats > 0 %>
+    <div id="req" data-trip_id = '<%=@trip.id%>'>
+  <!--   <button id="req-btn" onclick = 'request()'> Request </button> -->
+   <button class='req-btn'><%= link_to 'Request', requests_path(:trip_id => @trip.id), remote: true, method: :post, id:'request-link' %></button>
+   </div>
+
+    <% end %>
+</div>
+<br/>
+<div id="requesters">
+  <%= render 'requesters' %>
+</div>
+<% else %>
+
+  <h1> You are a driver man </h1>
+    <!--   Driver part - confirm button
+    -->
+
+<% end %>
+</div>
+<div class="redirect-links">
+<%= link_to 'Back', trips_path, class: 'txt-btn' %>
+</div>
+
+<script>
+
+$('.req-btn').click(function(){
+  $('.req-btn').hide();
+})
+
+</script>

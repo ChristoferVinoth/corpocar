@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  belongs_to :trip
-  has_many :requests
+  has_one :trip
+  has_many :requests, foreign_key: 'rider_id'
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -16,18 +16,19 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :employee_id, :mobile_no
 
   def is_rider?
-    return false if self.trips.first.driver ==  self
+    return true if self.requests.empty?
+    return false if self.requests.first.trip.driver ==  self
     true
   end
 
   def is_driver?
-    return true if self.trips.first.driver ==  self
+    return true if self.requests.first.trip.driver ==  self
     false
   end
 
   def has_trip?
-    return false if self.trips.first.nil?
-    true
+    return true if self.is_driver?
+    false
   end
 
 

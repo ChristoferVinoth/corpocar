@@ -1,3 +1,11 @@
 <h1> List </h1>
-
-<%= @trips %>
+<br/>
+<% @trips.each do |trip| %>
+ <div id="tr">
+       <h3><%= link_to "Trip :  #{trip.origin} to #{trip.destination}", trip_path(trip.id), class: "txt-btn" %></h3><br/>
+        StartTime :<%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br/>
+        Owner :<%= trip.driver.name %><br/>
+        Available :<%= trip.available_seats %>
+  </div>
+  <br/> <br/>
+ <% end %>
