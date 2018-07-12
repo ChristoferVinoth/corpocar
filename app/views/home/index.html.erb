@@ -1,10 +1,14 @@
 <div class="home-wrapper">
 	<% if user_signed_in? %>
-		<%= link_to 'Driver', new_trip_path %>
-		<%= link_to 'Rider', trips_path%>
-		<p>
-			hey geo... animate the signout button... like background is having a car image starting to ride
-		</p>
+		<h2 class="user-diff">You want to ?</h2>
+		<%= link_to(new_trip_path, class: "user-button") do %>
+			<%=image_tag("driver.png")%>
+			<span>Share your ride</span>
+		<% end %>
+		<%= link_to(trips_path, class: "user-button") do %>
+			<%=image_tag("rider.png")%>
+			<span>Look for a ride</span>
+		<% end %>
 	<% else %>
 		<p class="text-area">
 			Random text Random text Random text Random text<br>

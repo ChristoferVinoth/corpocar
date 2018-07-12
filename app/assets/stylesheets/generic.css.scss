@@ -103,8 +103,6 @@ form{
 	input[type="text"] i, input[type="email"], input[type="password"]{
 		display: inline-block;
 		width: 50%;
-		animation-name: error-field-color;
-    	animation-duration: 3s;
 	}
 }
 
@@ -114,11 +112,6 @@ form{
 	a{
 		margin: 10px;
 	}
-}
-
-@keyframes error-field-color {
-    from {background-color: #f2dede;}
-    to {background-color: #fff;}
 }
 
 #error_explanation{
