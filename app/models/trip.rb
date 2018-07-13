@@ -4,4 +4,3 @@ class Trip < ActiveRecord::Base
   has_many :requests
   attr_accessible :driver_id, :origin, :destination, :start_time, :available_seats
 end
- 

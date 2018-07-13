@@ -30,21 +30,42 @@ header{
 	}
 }
 
+/***************** Footer partial layouts/_footer.html.erb ************************/
+
+footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:80px;
+   background:#DF373B;
+   color: #fff;
+   text-align: center;
+   line-height: 80px;
+   .copy{
+		display: inline-block;
+		text-align: right;
+		float: right;
+		margin-right: 20px;
+		font-size: 18px;
+	}
+
+}
+
+
 /***************** Home page home/index.html.erb ************************/
 
 .home-wrapper{
 	width: 100%;
 	position: relative;
-
 	p.text-area{
 		text-align: center;
 		margin: 20px 0;
 	}
 
 	img{
-		height: 50%;
-		width: 50%;
-		margin-left: 25%;
+		height: 46%;
+		width: 46%;
+		margin-left: 27%;
 		margin-top: 20px;
 	}
 
@@ -63,23 +84,26 @@ header{
 		width: 300px;
 		height: 300px;
 		padding: 5px;
+		padding-bottom: 20px;
 		display: inline-block;
 		margin-left: 200px;
 		margin-right: 100px;
 		margin-top: 30px;
 		text-align: center;
 		text-decoration: none;
+		border-radius: 10px;
+		background-color: rgba(255,55,23,0.1);
 		color: #000;
 		font-weight: 400;
 		font-size: 20px;
 		img{
-			height: 80%;
-			width: 80%;
+			height: 70%;
+			width: 70%;
 			margin-top: 5%;
 			margin-left: 10%;
 			margin-right: 10%;
 			margin-bottom: 20px;
-			transition: 0.5s all;
+			transition: 0.4s all;
 		}
 	}
 
