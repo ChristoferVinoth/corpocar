@@ -1,9 +1,27 @@
 <div class="requesters-list">
-  <b> Requesters : </b><br/>
-  <% if @trip.present? %>
-    <% @trip.requests.each do |req|%>
-    Name : <%= req.rider.name %>,
-    Status : <%= req.confirmed ? 'Confirmed' : 'Waiting' %> <br/><br/>  
-    <% end %>
-  <%end%>
+	<% if !current_user.is_rider? %>
+
+		<b> Requesters List : </b></br>
+       		 <% if @trip.present? %>
+        		<% @trip.requests.each do |req|%>
+         			 Name : <%= req.rider.name %>
+          			 Status :<%= req.confirmed ? 'Confirmed' : 'Waiting' %> 
+          			 <% if !req.confirmed %> 
+          			 	<button class='req-btn'><%= link_to 'Confirm', confirm_request_path(req_id: req.id, trip_id: @trip.id), remote: true, id: 'request-confirm'%></button></br>
+					<% end %>
+					<br/>
+       			 <% end %> 
+	        <% end %>
+
+	<% else %>
+	
+		<b> Requesters : </b><br/>
+		<% if @trip.present? %>
+		    <% @trip.requests.each do |req|%>
+		    Name : <%= req.rider.name %>,
+		    Status : <%= req.confirmed ? 'Confirmed' : 'Waiting' %> <br/><br/>  
+		    <% end %>
+		 <%end%>
+	<% end %>	
+  
 </div>

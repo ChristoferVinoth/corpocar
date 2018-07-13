@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def has_trip?
-    return true if self.is_driver?
+    return true if !self.is_rider?
     false
   end
 

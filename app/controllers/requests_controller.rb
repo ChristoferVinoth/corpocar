@@ -22,4 +22,17 @@ class RequestsController < ApplicationController
       redirect_to trip_path(@trip)
     end
   end
+
+  def confirm_request
+    @trip = Trip.find(params[:trip_id])
+    @request = Request.find(params[:req_id])
+    @request.confirmed = true
+    if @request.save
+      @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
+      @requests.each do |r|
+        r.destroy
+      end 
+    end
+    render partial: 'trips/requesters'
+  end
 end
