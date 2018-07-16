@@ -13,7 +13,7 @@ class TripsController < ApplicationController
   end
 
   def index
-    @trips = Trip.all
+    @trips = Trip.includes(:driver).all
   end
 
   def show
