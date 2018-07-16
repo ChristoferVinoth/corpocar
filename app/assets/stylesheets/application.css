@@ -50,6 +50,14 @@ html,body{
     cursor: pointer;
 }
 
+.wrapper{
+	display: relative;
+
+}
+
+.content{
+	min-height: 73.2vh;
+}
 
 /********************************************
 

@@ -33,15 +33,16 @@ header{
 /***************** Footer partial layouts/_footer.html.erb ************************/
 
 footer {
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:80px;
-   background:#DF373B;
-   color: #fff;
-   text-align: center;
-   line-height: 80px;
-   .copy{
+	position: relative;
+	bottom:0;
+	width:100%;
+	font-weight: 500;
+	height:80px;
+	border-top:2px solid #DF373B;
+	color: #000;
+	text-align: center;
+	line-height: 80px;
+	.copy{
 		display: inline-block;
 		text-align: right;
 		float: right;
@@ -63,8 +64,8 @@ footer {
 	}
 
 	img{
-		height: 46%;
-		width: 46%;
+		height: 45%;
+		width: 45%;
 		margin-left: 27%;
 		margin-top: 20px;
 	}
@@ -78,7 +79,7 @@ footer {
 	.user-diff{
 		font-weight: 300;
 		font-size: 200%;
-		margin-top: 40px;
+		margin-top: 15px;
 	}
 	.user-button:link, .user-button:visited{
 		width: 300px;
