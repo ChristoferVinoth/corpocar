@@ -37,6 +37,10 @@ class RequestsController < ApplicationController
         r.destroy
       end
     end
+    if @trip.available_seats
+      @trip.available_seats-=1
+    end
+    @trip.save
     render partial: 'trips/requesters'
   end
 end

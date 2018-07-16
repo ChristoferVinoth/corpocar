@@ -21,4 +21,5 @@ $(document).ready(function(){
   $('#request-confirm').on('ajax:complete', function(event, data, status){
     $('#requesters').html(data.responseText)
   })
+  
 })

@@ -1,6 +1,11 @@
 <div class="requesters-list">
 	<% if !current_user.is_rider? %>
-
+        <div>
+          <b> Trip Details : </b><br/>
+          Starting Time : <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br/>
+          Available Seats : <%= @trip.available_seats %><br/>
+      </div>
+      <br/>
 		<b> Requesters List : </b></br>
        		 <% if @trip.present? %>
         		<% @trip.requests.each do |req|%>
