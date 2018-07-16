@@ -1,11 +1,11 @@
-<h1> List </h1>
-<br/>
+<h2> Available trips </h2>
 <% @trips.each do |trip| %>
- <div id="tr">
-       <h3><%= link_to "Trip :  #{trip.origin} to #{trip.destination}", trip_path(trip.id), class: "txt-btn" %></h3><br/>
-        StartTime :<%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br/>
-        Owner :<%= trip.driver.name %><br/>
-        Available :<%= trip.available_seats %>
-  </div>
-  <br/> <br/>
- <% end %>
+	<%= link_to trip_path(trip.id), class: "trip-listing" do %>
+		<h3><%= "#{trip.origin.capitalize} ⟶ #{trip.destination.capitalize}" %> </h3>
+		<p>
+			<span class="trip-meta-title">Starts in: </span><%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br>
+			<span class="trip-meta-title">Owner: </span><%= trip.driver.name.capitalize %><br>
+			<span class="trip-meta-title">Available: </span><%= trip.available_seats %><br>
+		</p>
+	<% end %>
+<% end %>
