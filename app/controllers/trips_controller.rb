@@ -19,4 +19,14 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
   end
+
+  def destroy
+    @trip = Trip.find(params[:id])
+    @requests = Request.where(trip_id: @trip.id)
+    @requests.each do |req|
+      req.destroy
+    end
+    @trip.destroy
+    redirect_to root_path
+  end
 end

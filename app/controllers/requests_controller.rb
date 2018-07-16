@@ -18,6 +18,10 @@ class RequestsController < ApplicationController
     @request.trip_id = params[:id]
     @request.confirmed = true
     if @request.save
+      @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
+      @requests.each do |r|
+        r.destroy
+      end
       @trip = Trip.find(params[:id])
       redirect_to trip_path(@trip)
     end
@@ -31,7 +35,7 @@ class RequestsController < ApplicationController
       @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
       @requests.each do |r|
         r.destroy
-      end 
+      end
     end
     render partial: 'trips/requesters'
   end

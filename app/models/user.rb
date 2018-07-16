@@ -21,15 +21,13 @@ class User < ActiveRecord::Base
     true
   end
 
-  def is_driver?
-    return true if self.requests.first.trip.driver ==  self
-    false
-  end
-
   def has_trip?
     return true if !self.is_rider?
     false
   end
 
+  def get_trip
+    return self.requests.first.trip.id
+  end
 
 end
