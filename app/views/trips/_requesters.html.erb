@@ -1,32 +1,17 @@
 <div class="requesters-list">
-	<% if !current_user.is_rider? %>
-        <div>
-          <b> Trip Details : </b><br/>
-          Starting Time : <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br/>
-          Available Seats : <%= @trip.available_seats %><br/>
-      </div>
-      <br/>
-		<b> Requesters List : </b></br>
-       		 <% if @trip.present? %>
-        		<% @trip.requests.each do |req|%>
-         			 Name : <%= req.rider.name %>
-          			 Status :<%= req.confirmed ? 'Confirmed' : 'Waiting' %> 
-          			 <% if !req.confirmed %> 
-          			 	<button class='req-btn'><%= link_to 'Confirm', confirm_request_path(req_id: req.id, trip_id: @trip.id), remote: true, id: 'request-confirm'%></button></br>
-					<% end %>
-					<br/>
-       			 <% end %> 
-	        <% end %>
+  Available Seats : <%= @trip.available_seats %><br/>
 
-	<% else %>
-	
-		<b> Requesters : </b><br/>
-		<% if @trip.present? %>
-		    <% @trip.requests.each do |req|%>
-		    Name : <%= req.rider.name %>,
-		    Status : <%= req.confirmed ? 'Confirmed' : 'Waiting' %> <br/><br/>  
-		    <% end %>
-		 <%end%>
-	<% end %>	
-  
+  <b> Requesters List : </b></br>
+  <% if @trip.present? %>
+    <% @trip.requests.each do |req|%>
+      Name : <%= req.rider.name %>
+      Status :<%= req.confirmed ? 'Confirmed' : 'Waiting' %>
+      <% if !current_user.is_rider? %>
+        <% if !req.confirmed %>
+          <button class='req-btn'><%= link_to 'Confirm', confirm_request_path(req_id: req.id, trip_id: @trip.id), remote: true, id: 'request-confirm'%></button>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
 </div>
