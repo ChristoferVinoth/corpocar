@@ -1,27 +1,26 @@
-
 <h2> New trip</h2>
 
 <%= form_for @trip do |f| %>
-<div class="field">
-<%= f.label :origin %>
-<%= f.text_field :origin %>
-</div>
-<div class="field">
-<%= f.label :destination %>
-<%= f.text_field :destination %>
-</div>
-<div class="field">
-<%= f.label :start_time %>
-<%= f.text_field :start_time %>
-</div>
-<div class="field">
-<%= f.label :available_seats %>
-<%= f.text_field :available_seats %>
-</div>
-<div class="actions">
-<%= f.submit%>
-</div>
+	<div class="field">
+		<%= f.label :origin %>
+		<%= f.text_field :origin %>
+	</div>
+	<div class="field">
+		<%= f.label :destination %>
+		<%= f.text_field :destination %>
+	</div>
+	<div class="field">
+		<%= f.label :start_time %>
+		<%= f.text_field :start_time %>
+	</div>
+	<div class="field">
+		<%= f.label :available_seats %>
+		<%= f.text_field :available_seats %>
+	</div>
+	<div class="actions">
+		<%= f.submit%>
+	</div>
 <% end %>
 <div class="redirect-links">
-<%= link_to "Back", root_path, class: "txt-btn" %>
+	<%= link_to "Back", root_path, class: "txt-btn" %>
 </div>

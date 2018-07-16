@@ -174,3 +174,41 @@ footer {
 .trip-redirect-home{
 	margin-left: 7%;
 }
+
+
+/***************** Trip show page trips/show.html.erb ************************/
+
+.trip-wrapper{
+	line-height: 22px;
+}
+
+.trip-metadata{
+	margin-left: 35%;
+	width: 30%;
+	td{
+		width: 50%;
+		height: 30px;
+	}
+}
+
+.req-btn, .req-btn:link, .req-btn:visited{
+	display: block;
+	margin-left: 42%;
+	height: 45px;
+	line-height: 45px;
+	width: 16%;
+	text-decoration: none;
+	color: #000;
+	font-size: 18px;
+	font-weight: 400;
+	border: 1px solid #15851e;
+	border-radius: 8px;
+	background-color: #37DF3B;
+	text-align: center;
+	transition: 0.3s all;
+	margin-top: 20px;
+}
+
+.req-btn:hover, .req-btn:active{
+	background-color: #15851e;
+}

@@ -23,8 +23,8 @@ class TripsController < ApplicationController
   def destroy
     @trip = Trip.find(params[:id])
     @requests = Request.where(trip_id: @trip.id)
-    @requests.each do |req|
-      req.destroy
+    @requests.each do |request|
+      request.destroy
     end
     @trip.destroy
     redirect_to root_path

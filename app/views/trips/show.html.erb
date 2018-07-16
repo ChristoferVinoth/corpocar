@@ -1,44 +1,36 @@
 <h2><%= @trip.origin.capitalize %> ⟶ <%= @trip.destination.capitalize %> </h2>
-<div style="margin-left: 100px">
-
-    <div>
-      <b>Owner Details : </b> <br/>
-      Name :  <%= @trip.driver.name %> <br/>
-      Mobile no : <%= @trip.driver.mobile_no %><br/>
-    </div>
-
-    <br/>
-
-    <div>
-      <b> Trip Details : </b><br/>
-      Starting Time : <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br/>
-      Available Seats : <%= @trip.available_seats %><br/>
-      <% if current_user.is_rider? %>
-        <% if @trip.available_seats > 0 && !current_user.has_trip? %>
-          <div id="req" data-trip_id = '<%=@trip.id%>'>
-          <%= link_to 'Request', requests_path(:trip_id => @trip.id), remote: true, method: :post, id:'request-link', class: 'req-btn' %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <br/>
-
-      <div id="requesters">
-        <%= render 'requesters' %>
-      </div>
-
+<div class="trip-wrapper">
+  <table class="trip-metadata">
+    <tr>
+      <td>Owner: </td>
+      <td><%= @trip.driver.name %></td>
+    </tr>
+    <tr>
+      <td>Mobile no: </td>
+      <td><%= @trip.driver.mobile_no %></td>
+    </tr>
+    <tr>
+      <td>Starting Time: </td>
+      <td><%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %></td>
+    </tr>
+  </table>
+  <% if current_user.is_rider? %>
+    <% if @trip.available_seats > 0 && !current_user.has_trip? %>
+      <%= link_to 'Request', requests_path(:trip_id => @trip.id), remote: true, method: :post, id:'request-link', class: 'req-btn' %>
+    <% end %>
+  <% end %>
+  <div id="requesters">
+    <%= render 'requesters' %>
+  </div>
+</div>
+<div class="redirect-links">
+  <% if current_user.is_rider? %>
+    <%= link_to 'Back', trips_path, class: 'txt-btn' %>
+  <% else %>
+    <%= link_to 'Cancel trip', trip_path(@trip), method: :delete,data:  {confirm: "Are you sure to delete this trip ?"}, class: 'txt-btn' %>
+  <% end %>
 </div>
 
-<% if current_user.is_rider? %>
-    <div class="redirect-links">
-      <%= link_to 'Back', trips_path, class: 'txt-btn' %>
-    </div>
-<% else %>
-    <div class="redirect-links">
-      <%= link_to 'Cancel trip', trip_path(@trip), method: :delete,data:  {confirm: "Are you sure to delete this trip ?"}, class: 'txt-btn' %>
-    </div>
-<% end %>
 
 <script>
 
