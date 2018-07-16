@@ -2,21 +2,12 @@
 <% @trips.each do |trip| %>
 	<% trip_class = (trip.available_seats == 0 ? "trip-listing danger" : "trip-listing") %>
 	<%= link_to trip_path(trip.id), class: trip_class do %>
-		<div class="card">
-			<h3 class="card-cover">
-				<%= "#{trip.origin.capitalize}" %> <br>
-				⟶<br>
-				<%= "#{trip.destination.capitalize}" %>
-			</h3>
-		</div>
-		<div class="overlay">
-			<h3 class="card-heading"><%= "#{trip.origin.capitalize} ⟶ #{trip.destination.capitalize}" %> </h3>
-			<p>
-				<span class="trip-meta-title">Starts in: </span><%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br>
-				<span class="trip-meta-title">Owner: </span><%= trip.driver.name.capitalize %><br>
-				<span class="trip-meta-title">Available: </span><%= trip.available_seats %><br>
-			</p>
-		</div>
+		<h3><%= "#{trip.origin.capitalize} ⟶ #{trip.destination.capitalize}" %> </h3>
+		<p>
+			<span class="trip-meta-title">Starts in: </span><%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br>
+			<span class="trip-meta-title">Owner: </span><%= trip.driver.name.capitalize %><br>
+			<span class="trip-meta-title">Available: </span><%= trip.available_seats %><br>
+		</p>
 	<% end %>
 <% end %>
 <div class="trip-redirect-home">

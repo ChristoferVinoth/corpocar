@@ -132,7 +132,6 @@ footer {
 
 .trip-listing, .trip-listing:link, .trip-listing:visited{
 	display: inline-block;
-	position: relative;
 	border: 2px solid rgb(55,223,59);
 	text-decoration: none;
 	color: #000;
@@ -143,54 +142,25 @@ footer {
 	margin-bottom: 20px;
 	padding: 5px;
 	border-radius: 15px;
-  	transition: all 1s ease-in-out;
-	.card-cover{
+	transition: 0.4s all;
+	h3{
 		font-weight: 500;
-		font-size: 22px;
+		font-size: 130%;
+		border-bottom: 1px solid black;
 		text-align: center;
-		padding-top: 25px;
-		border-radius: 15px;
-		backface-visibility: hidden;
-		transition: all 1s ease-in-out;
 	}
-	.overlay{
-		position: absolute;
-		opacity: 0;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 99%;
-		width: 99%;
-		transform: rotateY(180deg);
-		transition: all 1s ease-in-out;
-		.card-heading{
-			font-weight: 500;
-			font-size: 120%;
-			border-bottom: 1px solid black;
-			text-align: center;
-			margin-top: 8px;
-		}
-		p{
-			margin-top: 10px;
-			padding: 15px;
-			line-height: 30px;
-			.trip-meta-title{
-				font-weight: 400;
-			}
+	p{
+		margin-top: 10px;
+		padding: 15px;
+		line-height: 30px;
+		.trip-meta-title{
+			font-weight: 400;
 		}
 	}
 }
 
 .trip-listing:hover, .trip-listing:active{
-	transform: rotateY(180deg);
 	background-color: rgba(55,223,59,0.1);
-	.card-cover{
-		transform: rotateY(180deg);
-	}
-	.overlay{
-		opacity: 1;
-	}
 }
 
 .trip-listing.danger{
