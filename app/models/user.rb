@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 
   def has_trip?
     return true if !self.is_rider?
+    return true if !Request.where(rider_id: self.id, confirmed: true).empty?
     false
   end
 
