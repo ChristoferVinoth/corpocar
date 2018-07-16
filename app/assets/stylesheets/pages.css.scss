@@ -132,7 +132,7 @@ footer {
 
 .trip-listing, .trip-listing:link, .trip-listing:visited{
 	display: inline-block;
-	border: 1px solid rgb(223,55,59);
+	border: 2px solid rgb(55,223,59);
 	text-decoration: none;
 	color: #000;
 	width: 320px;
@@ -160,5 +160,17 @@ footer {
 }
 
 .trip-listing:hover, .trip-listing:active{
+	background-color: rgba(55,223,59,0.1);
+}
+
+.trip-listing.danger{
+	border: 2px solid rgb(223,55,59);
+}
+
+.trip-listing.danger:hover, .trip-listing.danger:active{
 	background-color: rgba(223,55,59,0.1);
+}
+
+.trip-redirect-home{
+	margin-left: 7%;
 }

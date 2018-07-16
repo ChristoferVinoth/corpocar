@@ -1,4 +1,4 @@
-<h2> Trip : <%= @trip.origin %> to <%= @trip.destination %> </h2>
+<h2><%= @trip.origin.capitalize %> ⟶ <%= @trip.destination.capitalize %> </h2>
 <div style="margin-left: 100px">
 <% if current_user.is_rider? %>
     <div>

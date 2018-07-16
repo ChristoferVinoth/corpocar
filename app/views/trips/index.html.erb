@@ -1,6 +1,7 @@
 <h2> Available trips </h2>
 <% @trips.each do |trip| %>
-	<%= link_to trip_path(trip.id), class: "trip-listing" do %>
+	<% trip_class = (trip.available_seats == 0 ? "trip-listing danger" : "trip-listing") %>
+	<%= link_to trip_path(trip.id), class: trip_class do %>
 		<h3><%= "#{trip.origin.capitalize} ⟶ #{trip.destination.capitalize}" %> </h3>
 		<p>
 			<span class="trip-meta-title">Starts in: </span><%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br>
@@ -9,3 +10,6 @@
 		</p>
 	<% end %>
 <% end %>
+<div class="trip-redirect-home">
+	<%= link_to "Back", root_path, class: "txt-btn" %>
+</div>
