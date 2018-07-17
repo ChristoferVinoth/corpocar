@@ -33,6 +33,7 @@ class RequestsController < ApplicationController
     @request.confirmed = true
     if @request.save
       @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
+      TripMailer.trip_confirm_mail(@request.rider, @trip).deliver
       @requests.each do |r|
         r.destroy
       end

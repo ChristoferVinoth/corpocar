@@ -17,7 +17,7 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.find(params[:id])
+    @trip = Trip.includes(:requests).joins(:driver).find(params[:id])
   end
 
   def destroy

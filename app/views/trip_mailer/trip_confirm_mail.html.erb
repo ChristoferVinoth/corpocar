@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name %></h1>
+    <p style="margin-left: 6px">
+      Your trip from <%= @trip.origin %> to <%= @trip.destination %> has been confirmed by <%= @trip.driver.name %>.<br>
+      Your trip starts at <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %>.
+    </p>
+  </body>
+</html>
