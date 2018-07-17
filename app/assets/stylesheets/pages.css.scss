@@ -198,17 +198,56 @@ footer {
 	line-height: 45px;
 	width: 16%;
 	text-decoration: none;
-	color: #000;
+	color: #fff;
 	font-size: 18px;
 	font-weight: 400;
-	border: 1px solid #15851e;
+	border: 1px solid #0d4f0e;
 	border-radius: 8px;
-	background-color: #37DF3B;
+	background-color: #1ba61e;
 	text-align: center;
 	transition: 0.3s all;
 	margin-top: 20px;
 }
 
 .req-btn:hover, .req-btn:active{
-	background-color: #15851e;
+	background-color: #0d4f0e;
+}
+
+.requesters-list{
+	margin-left: 35%;
+	margin-top: 15px;
+	text-align: center;
+	width: 30%;
+	span{
+		font-weight: 400;
+	}
+	.confirmation-table{
+		margin-left: 30%;
+		text-align: left;
+		width: 65%;
+		td.confirm-success{
+			color: #1ba61e;
+		}
+		td.confirm-wait{
+			color: #a6a61e;
+		}
+		tr{
+			height: 28px;
+		}
+	}
+	.confirm-btn, .confirm-btn:link, .confirm-btn:visited{
+		display: inline-block;
+		color: #fff;
+		border: 1px solid #0d4f0e;
+		font-size: 12px;
+		width: 70px;
+		text-decoration: none;
+		border-radius: 5px;
+		background-color: #1ba61e;
+		text-align: center;
+		transition: 0.3s all;
+	}
+	.confirm-btn:hover, .confirm-btn:active{
+		background-color: #0d4f0e;
+	}
 }
