@@ -14,7 +14,7 @@
 						<td class='confirm-wait'> ◷ </td>
 					<% end %>
 					<td>
-						<% if !current_user.is_rider? && !req.confirmed %>
+						<% if !current_user.is_rider? && !req.confirmed && @trip.driver_id==current_user.id%>
 							<%= link_to 'Confirm', confirm_request_path(req_id: req.id, trip_id: @trip.id), remote: true, id: 'request-confirm', class: 'confirm-btn'%>
 						<% end %>
 					</td>
