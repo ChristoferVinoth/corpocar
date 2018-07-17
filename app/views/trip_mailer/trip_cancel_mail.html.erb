@@ -6,8 +6,8 @@
   <body>
     <h1>Hi <%= @rider.name %></h1>
     <p style="margin-left: 6px">
-      Your trip from <%= @trip.origin %> to <%= @trip.destination %> has been confirmed by <%= @trip.driver.name %>.<br>
-      Your trip starts at <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %>.
+      Your trip from <%= @trip.origin %> to <%= @trip.destination %> with <%= @trip.driver.name %> has been cancelled.<br>
+      Sorry for the inconvinience.
     </p>
   </body>
 </html>

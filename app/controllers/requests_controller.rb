@@ -7,6 +7,7 @@ class RequestsController < ApplicationController
     @request.confirmed = false
     @trip = Trip.find(params[:trip_id])
     if @request.save
+      TripMailer.trip_request_mail(@request.rider, @trip).deliver
       render partial: 'trips/requesters'
     end
   end

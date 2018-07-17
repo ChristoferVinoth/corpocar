@@ -25,6 +25,7 @@ class TripsController < ApplicationController
     @requests = Request.where(trip_id: @trip.id)
     @requests.each do |request|
       request.destroy
+      TripMailer.trip_cancel_mail(@request.rider, @trip).deliver
     end
     @trip.destroy
     redirect_to root_path
