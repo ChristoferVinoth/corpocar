@@ -10,6 +10,7 @@ Carpocor::Application.routes.draw do
 
   get 'create_driver_request', to: 'requests#create_driver_request'
   get 'confirm_request', to: 'requests#confirm_request'
+  delete 'requests/destroy', to: 'requests#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

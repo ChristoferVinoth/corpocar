@@ -47,4 +47,15 @@ before_filter :authenticate_user!
     @trip.save
     render partial: 'trips/requesters'
   end
+
+  def destroy
+    @trip = Trip.find(params[:trip_id])
+    @request = Request.find(params[:req_id])
+    if @request.confirmed
+      @trip.available_seats +=1
+    end
+    if @request.destroy
+      redirect_to trips_path
+    end
+  end
 end

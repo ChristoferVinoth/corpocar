@@ -4,19 +4,25 @@
 	<span>List of requesters</span>
 	<% if @trip.present? %>
 		<table class="confirmation-table">
-			<% @trip.requests.each do |req|%>
+			<% @trip.requests.each do |request|%>
 				<tr>
-					<% if req.confirmed %>
-						<td class="confirm-success"><%= req.rider.name.capitalize %></td>
+					<% if request.confirmed %>
+						<td class="confirm-success"><%= request.rider.name.capitalize %></td>
 						<td class='confirm-success'> ✔ </td>
 					<% else %>
-						<td class="confirm-wait"><%= req.rider.name.capitalize %></td>
+						<td class="confirm-wait"><%= request.rider.name.capitalize %></td>
 						<td class='confirm-wait'> ◷ </td>
 					<% end %>
 					<td>
-						<% if !current_user.is_rider? && !req.confirmed && @trip.driver_id==current_user.id && @trip.available_seats > 0%>
-							<%= link_to 'Confirm', confirm_request_path(req_id: req.id, trip_id: @trip.id), remote: true, id: 'request-confirm', class: 'confirm-btn'%>
-						<% end %>
+            <% if !current_user.is_rider? %>
+  						<% if !request.confirmed && @trip.driver_id==current_user.id && @trip.available_seats > 0%>
+  							<%= link_to 'Confirm', confirm_request_path(req_id: request.id, trip_id: @trip.id), remote: true, id: 'request-confirm', class: 'confirm-btn'%>
+  						<% end %>
+            <% else %>
+              <% if request.rider_id == current_user.id %>
+                <%= link_to 'Delete', requests_destroy_path(req_id: request.id, trip_id: @trip.id), method: :delete%>
+              <% end %>
+            <% end %>
 					</td>
 				</tr>
 			<% end %>
