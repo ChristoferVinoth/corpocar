@@ -2,13 +2,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_one :trip
-  has_many :requests, foreign_key: 'rider_id'
+  has_one :trip, dependent: :destroy
+  has_many :requests, foreign_key: 'rider_id', dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :name, presence: true, uniqueness: {case_sensitive: false}, length: {minimum: 3, maximum: 30}
+  validates :name, presence: true, length: {minimum: 3, maximum: 30}
   validates :employee_id, presence: true
   validates :mobile_no, presence: true, uniqueness: true
 

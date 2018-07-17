@@ -18,8 +18,8 @@ $(document).ready(function(){
   $('#request-link').on('ajax:complete', function(event, data, status){
     $('#requesters').html(data.responseText)
   })
+
   $('#request-confirm').on('ajax:complete', function(event, data, status){
     $('#requesters').html(data.responseText)
   })
-  
 })
