@@ -4,7 +4,14 @@ class Trip < ActiveRecord::Base
   has_many :requests, dependent: :destroy
   attr_accessible :driver_id, :origin, :destination, :start_time, :available_seats
 
-  def rider_requested?
-
+  def rider_requested? rider_id
+    bool = false
+    @requests = Request.where(trip_id: self.id)
+    @requests.each do |request|
+      if request.rider_id == rider_id
+        bool = true
+      end
+    end
+    return bool
   end
 end

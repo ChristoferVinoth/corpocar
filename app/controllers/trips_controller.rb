@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def new
     @trip = Trip.new
   end
@@ -22,11 +24,6 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find(params[:id])
-    @requests = Request.where(trip_id: @trip.id)
-    @requests.each do |request|
-      request.destroy
-      TripMailer.trip_cancel_mail(@request.rider, @trip).deliver
-    end
     @trip.destroy
     redirect_to root_path
   end

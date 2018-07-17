@@ -15,7 +15,7 @@
     </tr>
   </table>
   <% if current_user.is_rider? %>
-    <% if @trip.available_seats > 0 && !current_user.has_trip? %>
+    <% if @trip.available_seats > 0 && !current_user.has_trip?  && !@trip.rider_requested?(current_user.id)%>
       <%= link_to 'Request', requests_path(:trip_id => @trip.id), remote: true, method: :post, id:'request-link', class: 'req-btn' %>
     <% end %>
   <% end %>
