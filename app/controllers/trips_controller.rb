@@ -14,6 +14,16 @@ class TripsController < ApplicationController
     #redirect_to trip_path(@trip)
   end
 
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    @trip.update_attributes(params[:trip])
+    redirect_to trip_path(@trip)
+  end 
+
   def index
     @trips = Trip.includes(:driver).all
   end
