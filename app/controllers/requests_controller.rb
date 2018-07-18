@@ -54,8 +54,9 @@ before_filter :authenticate_user!
     if @request.confirmed
       @trip.available_seats +=1
     end
+    @trip.save
     if @request.destroy
-      redirect_to trips_path
+      render partial: 'trips/requesters'
     end
   end
 end

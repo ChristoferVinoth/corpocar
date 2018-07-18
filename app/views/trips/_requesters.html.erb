@@ -1,3 +1,9 @@
+<% if current_user.is_rider? %>
+	<% if @trip.available_seats > 0 && !current_user.has_trip?  && !@trip.rider_requested?(current_user.id)%>
+		<%= link_to 'Request', requests_path(:trip_id => @trip.id), remote: true, method: :post, id:'request-link', class: 'req-btn' %>
+	<% end %>
+<% end %>
+
 <div class="requesters-list">
 	Available Seats : <%= @trip.available_seats %><br/>
 
@@ -20,7 +26,7 @@
   						<% end %>
             <% else %>
               <% if request.rider_id == current_user.id %>
-                <%= link_to 'Delete', requests_destroy_path(req_id: request.id, trip_id: @trip.id), method: :delete%>
+                <%= link_to 'Delete', requests_destroy_path(req_id: request.id, trip_id: @trip.id), remote: true, method: :delete, id: 'request-delete'%>
               <% end %>
             <% end %>
 					</td>

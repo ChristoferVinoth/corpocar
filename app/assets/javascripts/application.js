@@ -23,4 +23,7 @@ $(document).ready(function(){
     $('#requesters').html(data.responseText)
   })
 
+  $('#request-delete').on('ajax:complete', function(event, data, status){
+    $('#requesters').html(data.responseText)
+  })
 })
