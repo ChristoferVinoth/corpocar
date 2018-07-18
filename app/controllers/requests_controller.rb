@@ -9,24 +9,9 @@ before_filter :authenticate_user!
     @request.confirmed = false
     @trip = Trip.find(params[:trip_id])
     if @request.save
-      TripMailer.trip_request_mail(@request.rider, @trip).deliver
+      #TripMailer.trip_request_mail(@request.rider, @trip).deliver
+      MailWorker.perform_async('request',@request.rider.id, @trip.id)
       render partial: 'trips/requesters'
-    end
-  end
-
-  def create_driver_request
-    puts "#{params[:id]}"
-    @request = Request.new
-    @request.rider_id = current_user.id
-    @request.trip_id = params[:id]
-    @request.confirmed = true
-    if @request.save
-      @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
-      @requests.each do |r|
-        r.destroy
-      end
-      @trip = Trip.find(params[:id])
-      redirect_to trip_path(@trip)
     end
   end
 
@@ -36,7 +21,8 @@ before_filter :authenticate_user!
     @request.confirmed = true
     if @request.save
       @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
-      TripMailer.trip_confirm_mail(@request.rider, @trip).deliver
+      #TripMailer.trip_confirm_mail(@request.rider, @trip).deliver
+      MailWorker.perform_async('confirm',@request.rider.id, @trip.id)
       @requests.each do |r|
         r.destroy
       end

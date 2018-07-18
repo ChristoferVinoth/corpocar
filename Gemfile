@@ -24,6 +24,12 @@ gem 'test-unit', '~> 3.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'byebug'
+
+gem 'redis'
+gem 'foreman'
+gem 'clockwork', '0.4.1'
+gem 'sidekiq', "3.4.2"
+gem 'sidekiq-pro'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

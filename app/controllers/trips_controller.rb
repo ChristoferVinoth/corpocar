@@ -10,8 +10,17 @@ class TripsController < ApplicationController
     @trip = Trip.new(params[:trip])
     @trip.driver_id = current_user.id
     @trip.save
-    redirect_to controller: 'requests', action: 'create_driver_request' , id:@trip.id
-    #redirect_to trip_path(@trip)
+    @request = Request.new
+    @request.rider_id = current_user.id
+    @request.trip_id = @trip.id
+    @request.confirmed = true
+    if @request.save
+      @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
+      @requests.each do |r|
+        r.destroy
+      end
+    end
+    redirect_to trip_path(@trip)
   end
 
   def edit
@@ -34,6 +43,11 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find(params[:id])
+    @requests = Request.where(trip_id: @trip.id)
+    @requests.each do |request|
+      request.destroy
+      MailWorker.perform_async('cancel',@request.rider.id, @trip.id)
+    end
     @trip.destroy
     redirect_to root_path
   end
