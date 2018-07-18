@@ -8,7 +8,6 @@ Carpocor::Application.routes.draw do
 
   resources :requests, only: [:create]
 
-  get 'create_driver_request', to: 'requests#create_driver_request'
   get 'confirm_request', to: 'requests#confirm_request'
   delete 'requests/destroy', to: 'requests#destroy'
   # The priority is based upon order of creation:

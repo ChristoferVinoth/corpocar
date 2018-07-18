@@ -1,5 +1,6 @@
 class TripMailer < ApplicationMailer
-
+	default from: "corpocarv1@gmail.com"
+	
 	def trip_confirm_mail(rider, trip)
 		@rider = rider
 		@trip = trip
