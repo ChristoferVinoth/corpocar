@@ -26,7 +26,7 @@
   						<% end %>
             <% else %>
               <% if request.rider_id == current_user.id %>
-                <%= link_to 'Delete', requests_destroy_path(req_id: request.id, trip_id: @trip.id), remote: true, method: :delete, id: 'request-delete'%>
+                <%= link_to 'Delete', requests_destroy_path(req_id: request.id, trip_id: @trip.id), remote: true, method: :delete, id: 'request-delete', class: 'confirm-btn danger'%>
               <% end %>
             <% end %>
 					</td>

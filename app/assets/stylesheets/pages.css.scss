@@ -221,7 +221,7 @@ footer {
 }
 
 .requesters-list{
-	margin-left: 35%;
+	margin-left: 30%;
 	margin-top: 15px;
 	text-align: center;
 	width: 30%;
@@ -231,7 +231,13 @@ footer {
 	.confirmation-table{
 		margin-left: 30%;
 		text-align: left;
-		width: 65%;
+		width: 80%;
+		td{
+			width: 33%;
+		}
+		td:nth-child(2){
+			text-align: center;
+		}
 		td.confirm-success{
 			color: #1ba61e;
 		}
@@ -256,5 +262,12 @@ footer {
 	}
 	.confirm-btn:hover, .confirm-btn:active{
 		background-color: #0d4f0e;
+	}
+	.confirm-btn.danger{
+		background-color: #DF373B;
+		border: 1px solid #85151e;
+	}
+	.confirm-btn.danger:hover, .confirm-btn.danger:active{
+		background-color: #85151e;
 	}
 }
