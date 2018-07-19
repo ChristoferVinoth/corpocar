@@ -31,7 +31,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.update_attributes(params[:trip])
     redirect_to trip_path(@trip)
-  end 
+  end
 
   def index
     @trips = Trip.includes(:driver).all
@@ -45,8 +45,8 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @requests = Request.where(trip_id: @trip.id)
     @requests.each do |request|
+      MailWorker.perform_async('cancel',request.rider.id, @trip.id)
       request.destroy
-      MailWorker.perform_async('cancel',@request.rider.id, @trip.id)
     end
     @trip.destroy
     redirect_to root_path

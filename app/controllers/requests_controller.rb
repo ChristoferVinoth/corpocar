@@ -42,7 +42,7 @@ before_filter :authenticate_user!
     end
     @trip.save
     if @request.destroy
-      render partial: 'trips/requesters'
+      redirect_to trip_path(@trip)
     end
   end
 end
