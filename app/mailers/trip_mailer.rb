@@ -1,9 +1,10 @@
 class TripMailer < ApplicationMailer
 	default from: "corpocarv1@gmail.com"
-	
+
 	def trip_confirm_mail(rider, trip)
 		@rider = rider
 		@trip = trip
+		puts "in confirm mail"
 		mail(to: @rider.email, subject: "Trip Confirmed - #{trip.driver.name}")
 	end
 
