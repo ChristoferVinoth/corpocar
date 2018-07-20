@@ -5,7 +5,7 @@
 <% end %>
 
 <div class="requesters-list">
-	Available Seats : <%= @trip.available_seats %>
+	Available Seats : <%= link_to '⬇', trip_seat_change_path(id: @trip.id, mode: 'dec'), method: :post, remote: true, class: "txt-btn seat-change", id: "seat-down" if @trip.available_seats > 0 && current_user == @trip.driver%> <%= @trip.available_seats %> <%= link_to '⬆', trip_seat_change_path(id: @trip.id, mode: 'inc'), method: :post, remote: true, class: "txt-btn", id: "seat-up" if current_user == @trip.driver %>
 	<br/>
 
 	<span>List of requesters</span>

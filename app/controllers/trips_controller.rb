@@ -42,7 +42,6 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @trip = Trip.find(params[:id])
     @requests = Request.where(trip_id: @trip.id)
     @requests.each do |request|
       MailWorker.perform_async('cancel',request.rider.id, @trip.id)
@@ -50,5 +49,15 @@ class TripsController < ApplicationController
     end
     @trip.destroy
     redirect_to root_path
+  end
+
+  def seat_change
+    @trip = Trip.find(params[:id])
+    if params[:mode] == 'inc'
+      @trip.update_attribute(:available_seats, @trip.available_seats+1)
+    else
+      @trip.update_attribute(:available_seats, @trip.available_seats-1) if @trip.available_seats > 0
+    end
+    render partial: 'trips/requesters'
   end
 end

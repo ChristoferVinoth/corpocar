@@ -8,6 +8,7 @@ Carpocor::Application.routes.draw do
 
   resources :requests, only: [:create]
 
+  post 'trip_seat_change', to: 'trips#seat_change'
   get 'confirm_request', to: 'requests#confirm_request'
   delete 'requests/destroy', to: 'requests#destroy'
   # The priority is based upon order of creation:

@@ -23,4 +23,13 @@ $(document).ready(function(){
     $('#requesters').html(data.responseText)
   })
 
+  $('#seat-down').on('ajax:complete', function(event, data, status){
+    $('#requesters').html(data.responseText)
+  })
+
+  $('#seat-up').on('ajax:complete', function(event, data, status){
+    $('#requesters').html(data.responseText)
+  })
+
+
 })
