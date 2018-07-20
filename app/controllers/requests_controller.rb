@@ -10,7 +10,7 @@ before_filter :authenticate_user!
     @trip = Trip.find(params[:trip_id])
     if @request.save
       #TripMailer.trip_request_mail(@request.rider, @trip).deliver
-      MailWorker.perform_async('request',@request.rider.id, @trip.id)
+      MailWorker.perform_async('request', @trip.id, @request.rider.id)
       render partial: 'trips/requesters'
     end
   end
@@ -22,7 +22,7 @@ before_filter :authenticate_user!
     if @request.save
       @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
       #TripMailer.trip_confirm_mail(@request.rider, @trip).deliver
-      MailWorker.perform_async('confirm',@request.rider.id, @trip.id)
+      MailWorker.perform_async('confirm', @trip.id, @request.rider.id)
       @requests.each do |r|
         r.destroy
       end

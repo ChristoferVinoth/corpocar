@@ -42,12 +42,8 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @requests = Request.where(trip_id: @trip.id)
-    @requests.each do |request|
-      MailWorker.perform_async('cancel',request.rider.id, @trip.id)
-      request.destroy
-    end
-    @trip.destroy
+    @trip = Trip.find(params[:id])
+    MailWorker.perform_async('cancel', @trip.id)
     redirect_to root_path
   end
 
