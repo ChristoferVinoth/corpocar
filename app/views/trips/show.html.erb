@@ -22,6 +22,7 @@
 <div class="redirect-links">
     <%= link_to 'Back', trips_path, class: 'txt-btn' %>
     <%= link_to 'Cancel trip', trip_path(@trip), method: :delete, data:  {confirm: "Are you sure to delete this trip ?"}, class: 'txt-btn' if !current_user.is_rider? && current_user == @trip.driver%>
+    <%= link_to 'Finish trip', finish_path(@trip), method: :post, class: 'txt-btn' %>
 </div>
 
 

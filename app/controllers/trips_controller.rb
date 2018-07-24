@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
 
   before_filter :authenticate_user!
-  before_filter :set_trip, only:[:edit,:update,:destroy,:seat_change]
+  before_filter :set_trip, only:[:edit,:update,:destroy,:seat_change,:finish]
 
   def new
     @trip = Trip.new
@@ -45,6 +45,11 @@ class TripsController < ApplicationController
       @trip.change_available_seats(false) if @trip.available_seats > 0
     end
     redirect_to trip_path(@trip)
+  end
+
+  def finish
+    @trip.finish_trip
+    redirect_to root_path
   end
 
   private
