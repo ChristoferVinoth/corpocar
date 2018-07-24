@@ -30,6 +30,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.includes(:requests).joins(:driver).find(params[:id])
+    @path = @trip.via.split(',')
   end
 
   def destroy

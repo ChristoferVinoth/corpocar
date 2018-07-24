@@ -14,6 +14,14 @@
       <td><%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %></td>
     </tr>
   </table>
+  <ul class="trip-path">
+    <li class="heading">Route: </li>
+    <li><%=@trip.origin.capitalize%></li>
+    <% @path.each do |val|%>
+      <li><%=val%></li>
+    <% end %>
+    <li><%=@trip.destination.capitalize%></li>
+  </ul>
 
   <div id="requesters">
     <%= render 'requesters' %>
