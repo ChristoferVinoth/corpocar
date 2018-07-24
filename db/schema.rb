@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180722124440) do
+ActiveRecord::Schema.define(:version => 20180724112420) do
 
   create_table "requests", :force => true do |t|
     t.integer "rider_id",  :limit => 255
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20180722124440) do
     t.datetime "start_time"
     t.integer  "available_seats"
     t.string   "status",                         :default => "created"
+    t.string   "via"
   end
 
   create_table "users", :force => true do |t|
