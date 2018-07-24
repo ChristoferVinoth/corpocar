@@ -30,5 +30,8 @@ class Trip < ActiveRecord::Base
     return bool
   end
 
+  def finish_trip
+    self.update_attribute(:status, 'finished')
+  end
 
 end
