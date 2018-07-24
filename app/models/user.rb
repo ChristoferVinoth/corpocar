@@ -17,13 +17,13 @@ class User < ActiveRecord::Base
 
   def is_rider?
     return true if self.requests.empty?
-    return false if self.requests.first.trip.driver ==  self
+    return false if self.requests.first.trip.driver ==  self && self.requests.first.trip.status == 'created'
     true
   end
 
   def has_trip?
     return true if !self.is_rider?
-    return true if !Request.where(rider_id: self.id, confirmed: true).empty?
+    return true if !Request.where(rider_id: self.id, confirmed: true).empty? && !Trip.where(driver_id: self.id, status: 'created').empty?
     false
   end
 

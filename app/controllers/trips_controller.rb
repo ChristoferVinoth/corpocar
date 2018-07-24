@@ -1,40 +1,31 @@
 class TripsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :set_trip, only:[:edit,:update,:destroy,:seat_change,:finish]
 
   def new
     @trip = Trip.new
   end
 
   def create
-    @trip = Trip.new(params[:trip])
-    @trip.driver_id = current_user.id
-    @trip.save
-    @request = Request.new
-    @request.rider_id = current_user.id
-    @request.trip_id = @trip.id
-    @request.confirmed = true
-    if @request.save
-      @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
-      @requests.each do |r|
-        r.destroy
-      end
-    end
+    @trip = Trip.set_trip_values(params[:trip],current_user.id)
+    request_hash = {"rider_id": current_user.id, "trip_id": @trip.id, "confirmed": true}
+    @request = Request.create(request_hash)
+    Request.where(rider_id: @request.rider_id, confirmed: false).each { |r| r.destroy } #delete previous requests created by the owner
     redirect_to trip_path(@trip)
   end
 
   def edit
-    @trip = Trip.find(params[:id])
+
   end
 
   def update
-    @trip = Trip.find(params[:id])
     @trip.update_attributes(params[:trip])
     redirect_to trip_path(@trip)
   end
 
   def index
-    @trips = Trip.includes(:driver).all
+    @trips = Trip.includes(:driver).where(status: 'created')
   end
 
   def show
@@ -42,18 +33,29 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @trip = Trip.find(params[:id])
+    @trip.cancel_trip
     MailWorker.perform_async('cancel', @trip.id)
-    redirect_to root_path
+    redirect_to trips_path
   end
 
   def seat_change
-    @trip = Trip.find(params[:id])
     if params[:mode] == 'inc'
-      @trip.update_attribute(:available_seats, @trip.available_seats+1)
+      @trip.change_available_seats(true)
     else
-      @trip.update_attribute(:available_seats, @trip.available_seats-1) if @trip.available_seats > 0
+      @trip.change_available_seats(false) if @trip.available_seats > 0
     end
-    render partial: 'trips/requesters'
+    redirect_to trip_path(@trip)
   end
+
+  def finish
+    @trip.finish_trip
+    redirect_to root_path
+  end
+
+  private
+
+    def set_trip
+      @trip = Trip.find(params[:id])
+    end
+
 end

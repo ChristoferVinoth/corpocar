@@ -1,48 +1,43 @@
 class RequestsController < ApplicationController
 
 before_filter :authenticate_user!
+before_filter :set_trip
+before_filter :set_request, except:[:create]
+before_filter :adjust_seats, only: :destroy
 
   def create
-    @request = Request.new
-    @request.rider_id = current_user.id
-    @request.trip_id = params[:trip_id]
-    @request.confirmed = false
-    @trip = Trip.find(params[:trip_id])
-    if @request.save
-      #TripMailer.trip_request_mail(@request.rider, @trip).deliver
-      MailWorker.perform_async('request', @trip.id, @request.rider.id)
+      @request = Request.set_request_values(current_user.id,@trip.id)
+      MailWorker.perform_async('request', @trip.id, @request.rider_id)
       render partial: 'trips/requesters'
-    end
   end
 
   def confirm_request
-    @trip = Trip.find(params[:trip_id])
-    @request = Request.find(params[:req_id])
-    @request.confirmed = true
-    if @request.save
-      @requests = Request.where(rider_id: @request.rider_id, confirmed: false )
-      #TripMailer.trip_confirm_mail(@request.rider, @trip).deliver
-      MailWorker.perform_async('confirm', @trip.id, @request.rider.id)
-      @requests.each do |r|
-        r.destroy
-      end
-    end
-    if @trip.available_seats
-      @trip.available_seats-=1
-    end
-    @trip.save
-    render partial: 'trips/requesters'
+      @request.request_confirmation(@request.rider_id)
+      @trip.change_available_seats(false)
+      MailWorker.perform_async('confirm', @trip.id, @request.rider_id)
+      render partial: 'trips/requesters'
   end
 
   def destroy
-    @trip = Trip.find(params[:trip_id])
-    @request = Request.find(params[:req_id])
-    if @request.confirmed
-      @trip.available_seats +=1
-    end
-    @trip.save
     if @request.destroy
       redirect_to trip_path(@trip)
     end
   end
+
+  private
+
+    def set_trip
+      @trip = Trip.find(params[:trip_id])
+    end
+
+    def set_request
+      @request = Request.find(params[:req_id])
+    end
+
+    def adjust_seats
+      if @request.confirmed
+        @trip.change_available_seats(true)
+      end
+    end
+
 end

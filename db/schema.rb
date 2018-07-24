@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180711061027) do
+ActiveRecord::Schema.define(:version => 20180722124440) do
 
   create_table "requests", :force => true do |t|
     t.integer "rider_id",  :limit => 255
     t.integer "trip_id"
-    t.boolean "confirmed"
+    t.boolean "confirmed",                :default => false
   end
 
   create_table "trips", :force => true do |t|
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20180711061027) do
     t.string   "destination"
     t.datetime "start_time"
     t.integer  "available_seats"
+    t.string   "status",                         :default => "created"
   end
 
   create_table "users", :force => true do |t|
