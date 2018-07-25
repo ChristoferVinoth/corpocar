@@ -6,6 +6,20 @@ class Trip < ActiveRecord::Base
 
   validates :driver_id, :origin, :destination, :start_time, :available_seats, presence: true
 
+
+  def places
+    place_array = []
+    place_array.push(self.origin)
+    place_array += self.via.to_s.tr("\n\t", "").strip.split(/,/)
+    place_array.push(self.destination)
+    place_array
+  end
+
+  def goes_through? place
+    return true if self.places.include? place
+    false
+  end
+
   def self.set_trip_values trip_hash, user_id
     trip_hash['driver_id'] = user_id
     trip = Trip.create(trip_hash)
