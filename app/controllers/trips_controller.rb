@@ -41,7 +41,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.includes(:requests).joins(:driver).find(params[:id])
-    @path = @trip.via.split(',')
+    @path = (@trip.via.nil? ? [] : @trip.via.split(','))
   end
 
   def destroy
@@ -57,11 +57,6 @@ class TripsController < ApplicationController
       @trip.change_available_seats(false) if @trip.available_seats > 0
     end
     redirect_to trip_path(@trip)
-  end
-
-  def search
-
-    redirect_to trips_path
   end
 
   def finish

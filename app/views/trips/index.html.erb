@@ -2,7 +2,9 @@
 <%= form_tag(trips_path, method: 'get') do %>
       <%= text_field_tag(:search, params[:search]) %>
       <%= submit_tag("Search", name: nil) %>
+      <%= link_to "clear filter", trips_path, class: 'txt-btn'%>
 <% end %>
+
 <% @trips.each do |trip| %>
 	<% trip_class = (trip.available_seats == 0 ? "trip-listing danger" : "trip-listing") %>
 	<%= link_to trip_path(trip.id), class: trip_class do %>

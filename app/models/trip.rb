@@ -6,22 +6,22 @@ class Trip < ActiveRecord::Base
 
   validates :driver_id, :origin, :destination, :start_time, :available_seats, presence: true
 
-
   def places
     place_array = []
-    place_array.push(self.origin)
-    place_array += self.via.to_s.tr("\n\t", "").strip.split(/,/)
-    place_array.push(self.destination)
+    place_array.push(self.origin.downcase)
+    self.via.split(',').each{ |val| place_array.push(val.downcase) }
+    place_array.push(self.destination.downcase)
     place_array
   end
 
   def goes_through? place
-    return true if self.places.include? place
+    return true if self.places.include? place.downcase
     false
   end
 
   def self.set_trip_values trip_hash, user_id
     trip_hash['driver_id'] = user_id
+    trip_hash['via'] = trip_hash['via'].split(',').each{ |val| val.strip! }.join(',')
     trip = Trip.create(trip_hash)
   end
 

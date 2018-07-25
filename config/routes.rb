@@ -11,7 +11,6 @@ Carpocor::Application.routes.draw do
   post 'trip_seat_change', to: 'trips#seat_change'
   get 'confirm_request', to: 'requests#confirm_request'
   post 'trips/finish/:id', to: 'trips#finish' , as: 'finish'
-  get 'search_trips', to:'trips#search'
   delete 'requests/destroy', to: 'requests#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
