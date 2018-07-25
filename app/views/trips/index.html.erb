@@ -9,7 +9,7 @@
     </table>
 <% end %>
 <% if @trips.nil? %>
-	<% if @searched.nil? || @searched.blank? %>
+	<% if @searched.nil? %>
 		<p class="no-trip">Sorry no trips here</p>
 	<% else %>
 		<p class="no-trip">Sorry no trips to <%= @searched %></p>

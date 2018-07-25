@@ -26,7 +26,7 @@ class TripsController < ApplicationController
 
   def index
     @searched = params[:search]
-    if @searched.nil?
+    if @searched.nil? || @searched.blank?
       @trips = Trip.includes(:driver).where(status: 'created')
     else
       trips = Array.new
