@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180724112420) do
+ActiveRecord::Schema.define(:version => 20180725104812) do
 
   create_table "requests", :force => true do |t|
-    t.integer "rider_id",  :limit => 255
+    t.integer "rider_id",      :limit => 255
     t.integer "trip_id"
-    t.boolean "confirmed",                :default => false
+    t.boolean "confirmed",                    :default => false
+    t.string  "request_token"
   end
 
   create_table "trips", :force => true do |t|
