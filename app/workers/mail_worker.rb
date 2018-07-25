@@ -4,10 +4,11 @@ class MailWorker
   def perform(*args)
     trip = Trip.find(args[1])
     rider = User.find(args[2]) if args[2].present?
+    request = Request.find(args[3]) if args[3].present?
     if args[0].eql?('confirm')
-      TripMailer.trip_confirm_mail(rider,trip).deliver
+      TripMailer.trip_confirm_mail(rider, trip).deliver
     elsif args[0].eql?('request')
-      TripMailer.trip_request_mail(rider, trip).deliver
+      TripMailer.trip_request_mail(rider, trip, request).deliver
     elsif args[0].eql?('cancel')
       requests = Request.where(trip_id: trip.id)
         requests.each do |request|

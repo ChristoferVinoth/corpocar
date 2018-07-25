@@ -3,14 +3,14 @@ class TripMailer < ApplicationMailer
 	def trip_confirm_mail(rider, trip)
 		@rider = rider
 		@trip = trip
-		puts "in confirm mail"
 		mail(to: @rider.email, subject: "Trip Confirmed - #{trip.driver.name}")
 	end
 
-	def trip_request_mail(rider, trip)
+	def trip_request_mail(rider, trip, request)
 		@rider = rider
 		@trip = trip
 		@driver = trip.driver
+		@request = request
 		mail(to: @driver.email, subject: "Trip Request - #{@rider.name}")
 	end
 

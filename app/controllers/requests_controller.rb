@@ -7,7 +7,7 @@ before_filter :adjust_seats, only: :destroy
 
   def create
       @request = Request.set_request_values(current_user.id,@trip.id)
-      MailWorker.perform_async('request', @trip.id, @request.rider_id)
+      MailWorker.perform_async('request', @trip.id, @request.rider_id, @request.id)
       render partial: 'trips/requesters'
   end
 
@@ -17,6 +17,16 @@ before_filter :adjust_seats, only: :destroy
       MailWorker.perform_async('confirm', @trip.id, @request.rider_id)
       render partial: 'trips/requesters'
   end
+
+  def confirm_mail
+    req = Request.find_by_request_token(params[:id])
+    if user
+      req.email_confirm
+      redirect_to root_url
+    else
+      redirect_to root_url
+    end
+end
 
   def destroy
     if @request.destroy
@@ -38,6 +48,12 @@ before_filter :adjust_seats, only: :destroy
       if @request.confirmed
         @trip.change_available_seats(true)
       end
+    end
+
+    def email_confirm
+      self.confirmed = true
+      self.request_token = nil
+      save!(:validate => false)
     end
 
 end
