@@ -35,8 +35,8 @@ class TripsController < ApplicationController
           trips.push(trip)
         end
       end
+      @trips = trips
     end
-    @trips
   end
 
   def show

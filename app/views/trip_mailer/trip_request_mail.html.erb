@@ -7,7 +7,7 @@
     <h1>Hi <%= @driver.name %></h1>
     <p style="margin-left: 6px">
       <%= @rider.name %> has requested to join you during your trip from <%= @trip.origin %> to <%= @trip.destination %> at <%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %>.<br>
-      Confirm it by clicking <%= confirm_request_mail_url(@request.request_token) %>
+      Confirm it by clicking <%= confirm_request_mail_url(token: @request.request_token) %>
     </p>
   </body>
 </html>

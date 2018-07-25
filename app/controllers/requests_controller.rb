@@ -1,8 +1,8 @@
 class RequestsController < ApplicationController
 
-before_filter :authenticate_user!
-before_filter :set_trip
-before_filter :set_request, except:[:create]
+before_filter :authenticate_user!, except:[:confirm_mail]
+before_filter :set_trip, except:[:confirm_mail]
+before_filter :set_request, except:[:create, :confirm_mail]
 before_filter :adjust_seats, only: :destroy
 
   def create
@@ -19,9 +19,9 @@ before_filter :adjust_seats, only: :destroy
   end
 
   def confirm_mail
-    req = Request.find_by_request_token(params[:id])
-    if user
-      req.email_confirm
+    req = Request.find_by_request_token(params[:token])
+    if req
+      req.request_confirmation
       redirect_to root_url
     else
       redirect_to root_url
