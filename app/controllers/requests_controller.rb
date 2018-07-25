@@ -12,7 +12,7 @@ before_filter :adjust_seats, only: :destroy
   end
 
   def confirm_request
-      @request.request_confirmation(@request.rider_id)
+      @request.request_confirmation
       @trip.change_available_seats(false)
       MailWorker.perform_async('confirm', @trip.id, @request.rider_id)
       render partial: 'trips/requesters'

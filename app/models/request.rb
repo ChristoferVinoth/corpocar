@@ -13,10 +13,10 @@ class Request < ActiveRecord::Base
       request
     end
 
-    def request_confirmation rider_id
+    def request_confirmation
       self.confirmed = true
       self.save
-      Request.where(rider_id: rider_id, confirmed: false).each { |r| r.destroy } # deleting other requests made by this rider
+      Request.where(rider_id: self.rider_id, confirmed: false).each { |r| r.destroy } # deleting other requests made by this rider
     end
 
 end
