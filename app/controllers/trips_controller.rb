@@ -25,16 +25,16 @@ class TripsController < ApplicationController
   end
 
   def index
-    if !params[:search].present?
+    @searched = params[:search]
+    if @searched.nil?
       @trips = Trip.includes(:driver).where(status: 'created')
     else
       trips = Array.new
       Trip.all.each do |trip|
-        if trip.status == 'created' && trip.goes_through?(params[:search])
+        if trip.status == 'created' && trip.goes_through?(@searched)
           trips.push(trip)
         end
       end
-      @trips = trips
     end
     @trips
   end

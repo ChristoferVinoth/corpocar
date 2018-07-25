@@ -137,6 +137,33 @@ footer {
 
 /***************** Trip list page trips/index.html.erb ************************/
 
+form .search{
+	width: 100%;
+	margin-left: 10%;
+	td.search-field{
+		width: 70%;
+		input[type="text"]{
+			width: 100%;
+			height: 38px;
+			line-height: 38px;
+			font-size: 20px;
+			padding: 4px;
+		}
+	}
+	td{
+		padding: 5px;
+	}
+}
+
+p.no-trip {
+	text-align: center;
+	height: 200px;
+	margin-top: 10px;
+	padding-top: 40px;
+	font-size: 25px;
+	line-height: 100px;
+}
+
 .trip-listing, .trip-listing:link, .trip-listing:visited{
 	display: inline-block;
 	border: 2px solid rgb(55,223,59);

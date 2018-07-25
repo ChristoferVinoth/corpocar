@@ -1,19 +1,30 @@
 <h2> Available trips </h2>
 <%= form_tag(trips_path, method: 'get') do %>
-      <%= text_field_tag(:search, params[:search]) %>
-      <%= submit_tag("Search", name: nil) %>
-      <%= link_to "clear filter", trips_path, class: 'txt-btn'%>
+	<table class="search">
+      <tr>
+      	<td class="search-field"><%= text_field_tag(:search, params[:search]) %></td>
+      	<td><%= submit_tag("Search", name: nil, class: "btn btn-normal") %></td>
+      	<td><%= link_to "Clear Filter", trips_path, class: "btn btn-normal"%></td>
+      </tr>
+    </table>
 <% end %>
-
-<% @trips.each do |trip| %>
-	<% trip_class = (trip.available_seats == 0 ? "trip-listing danger" : "trip-listing") %>
-	<%= link_to trip_path(trip.id), class: trip_class do %>
-		<h3><%= "#{trip.origin.capitalize} ⟶ #{trip.destination.capitalize}" %> </h3>
-		<p>
-			<span class="trip-meta-title">Starts in: </span><%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br>
-			<span class="trip-meta-title">Owner: </span><%= trip.driver.name.capitalize %><br>
-			<span class="trip-meta-title">Available: </span><%= trip.available_seats %><br>
-		</p>
+<% if @trips.nil? %>
+	<% if @searched.nil? || @searched.blank? %>
+		<p class="no-trip">Sorry no trips here</p>
+	<% else %>
+		<p class="no-trip">Sorry no trips to <%= @searched %></p>
+	<% end %>
+<% else %>
+	<% @trips.each do |trip| %>
+		<% trip_class = (trip.available_seats == 0 ? "trip-listing danger" : "trip-listing") %>
+		<%= link_to trip_path(trip.id), class: trip_class do %>
+			<h3><%= "#{trip.origin.capitalize} ⟶ #{trip.destination.capitalize}" %> </h3>
+			<p>
+				<span class="trip-meta-title">Starts in: </span><%= trip.start_time.strftime("%B %e, %Y at %I:%M %p") %><br>
+				<span class="trip-meta-title">Owner: </span><%= trip.driver.name.capitalize %><br>
+				<span class="trip-meta-title">Available: </span><%= trip.available_seats %><br>
+			</p>
+		<% end %>
 	<% end %>
 <% end %>
 <div class="trip-redirect-home redirect-links">
