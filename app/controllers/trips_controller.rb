@@ -2,6 +2,7 @@ class TripsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :set_trip, only:[:edit,:update,:destroy,:seat_change,:finish]
+  before_filter :user_permitted?, only: :create
 
   def new
     @trip = Trip.new
@@ -70,4 +71,8 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
     end
 
+    def user_permitted?
+      return true if !current_user.has_trip?
+      false
+    end
 end

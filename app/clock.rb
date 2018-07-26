@@ -4,5 +4,6 @@ require './config/environment.rb'
 
 
 module Clockwork
-  every(1.hour, 'finished works status change'){ TripWorker.perform_async() }
+  every(30.minutes, 'finished works status change'){ TripWorker.perform_async() }
+#  every(1.minute, 'notify requesters'){ MailWorker.perform_async('notify') }
 end
