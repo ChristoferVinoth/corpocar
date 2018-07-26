@@ -46,7 +46,8 @@ class Trip < ActiveRecord::Base
 
   def finish_trip
     self.update_attribute(:status, 'finished')
-    Request.where(trip_id: self.id, rider_id: self.driver_id).first.destroy
+    request = Request.where(trip_id: self.id, rider_id: self.driver_id).first
+    request.destroy if !request.nil?
   end
 
 end

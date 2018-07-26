@@ -10,6 +10,10 @@
       <td><%= @trip.driver.mobile_no %></td>
     </tr>
     <tr>
+      <td>Email: </td>
+      <td><%= @trip.driver.email %></td>
+    </tr>
+    <tr>
       <td>Starting Time: </td>
       <td><%= @trip.start_time.strftime("%B %e, %Y at %I:%M %p") %></td>
     </tr>
@@ -29,7 +33,7 @@
 </div>
 <div class="redirect-links">
     <%= link_to 'Back', trips_path, class: 'txt-btn' %>
-    <%= link_to 'Cancel trip', trip_path(@trip), method: :delete, data:  {confirm: "Are you sure to delete this trip ?"}, class: 'txt-btn' if !current_user.is_rider? && current_user == @trip.driver %>
+    <%= link_to 'Cancel trip', trip_path(@trip), method: :delete, data: {confirm: "Are you sure to delete this trip ?"}, class: 'txt-btn' if !current_user.is_rider? && current_user == @trip.driver %>
     <%= link_to 'Finish trip', finish_path(@trip), method: :post, class: 'txt-btn' if !current_user.is_rider? && current_user == @trip.driver %>
 </div>
 
@@ -40,7 +44,7 @@ $('.req-btn').click(function(){
   $('.req-btn').hide();
 })
 
-$('.confirm-btn').click(function(){
+$('#request-confirm').click(function(){
   $(this).hide();
 })
 

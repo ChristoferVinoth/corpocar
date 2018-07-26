@@ -12,12 +12,13 @@
 	<% if @trip.present? %>
 		<table class="confirmation-table">
 			<% @trip.requests.each do |request|%>
+			<% if request.rider_id != @trip.driver_id %>
 				<tr>
 					<% if request.confirmed %>
-						<td class="confirm-success"><%= request.rider.name.capitalize %></td>
+						<td class="confirm-success"><%= request.rider.name.capitalize %> (<%=request.rider.email %>)</td>
 						<td class='confirm-success'> ✔ </td>
 					<% else %>
-						<td class="confirm-wait"><%= request.rider.name.capitalize %></td>
+						<td class="confirm-wait"><%= request.rider.name.capitalize %> (<%=request.rider.email %>)</td>
 						<td class='confirm-wait'> ◷ </td>
 					<% end %>
 					<td>
@@ -33,6 +34,7 @@
 					</td>
 				</tr>
 			<% end %>
+		<% end %>
 		</table>
 	<% end %>
 </div>

@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   def is_rider?
     return true if self.requests.empty?
-    return false if self.requests.first.trip.driver ==  self && self.requests.first.trip.status == 'created'
+    self.requests.each { |request| return false if request.trip.driver == self && request.trip.status == 'created'}
     true
   end
 
@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
   end
 
   def get_trip
-    return self.requests.first.trip.id
+    requests = Request.where(rider_id: self.id)
+    requests.each { |req| return req.trip.id if req.trip.status == 'created'}
   end
 
 end

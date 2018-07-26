@@ -1,5 +1,5 @@
-<h2> Available trips </h2>
-<%= form_tag(trips_path, method: 'get') do %>
+<h2 class="index-heading"> Available trips </h2>
+<%= form_tag(trips_path, method: 'get', class: "search-form") do %>
 	<table class="search">
       <tr>
       	<td class="search-field"><%= text_field_tag(:search, params[:search]) %></td>
@@ -8,6 +8,9 @@
       </tr>
     </table>
 <% end %>
+<div class="row-space">
+
+</div>
 <% if @trips.nil? %>
 	<% if @searched.nil? %>
 		<p class="no-trip">Sorry no trips here</p>

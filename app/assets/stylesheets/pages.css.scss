@@ -137,9 +137,26 @@ footer {
 
 /***************** Trip list page trips/index.html.erb ************************/
 
-form .search{
+.search-form{
+	display: block;
+	width: 40%;
+	margin-left: 0px;
+	float: right;
+}
+.row-space{
+	height: 1px;
 	width: 100%;
-	margin-left: 10%;
+	clear: both;
+}
+.index-heading{
+	display: block;
+	text-align: center;
+	margin-right: 30px;
+	padding-top: 5px;
+	margin-bottom: 2px;
+}
+form .search{
+	width: 90%;
 	td.search-field{
 		width: 70%;
 		input[type="text"]{
@@ -281,11 +298,14 @@ p.no-trip {
 		font-weight: 400;
 	}
 	.confirmation-table{
-		margin-left: 30%;
+		margin-left: 10%;
 		text-align: left;
-		width: 80%;
+		width: 90%;
 		td{
 			width: 33%;
+		}
+		td:nth-child(1){
+			width: 80%;
 		}
 		td:nth-child(2){
 			text-align: center;
