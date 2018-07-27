@@ -2,26 +2,34 @@
 
 header{
 	width: 100%;
-	height: 15%;
+	height: 100px;
 	padding: 1em;
 	border-bottom: 2px solid #DF373B;
 	a:link, a:hover, a:active, a:visited{
 		color: #000;
+		text-decoration: none;
+		div{
+			img{
+				height: 56px;
+				width: 56px;
+				display: inline-block;
+				float: left;
+				margin-top: 5px;
+			}
+			h1{
+				text-align: left;
+				font-size: 56px;
+				font-weight: 300;
+				letter-spacing: 2px;
+				display: inline-block;
+				span{
+					color: #DF373B;
+					font-weight: 400;
+				}
+			}
+		}
 	}
-	h1{
-		text-align: left;
-		font-size: 350%;
-		font-weight: 300;
-		letter-spacing: 2px;
-		display: inline-block;
-	}
-
-	span{
-		color: #DF373B;
-		font-weight: 400;
-	}
-
-	div{
+	.user-header-info{
 		float: right;
 		text-align: right;
 		font-size: 18px;

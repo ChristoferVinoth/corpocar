@@ -1,11 +1,13 @@
 <header>
 	<%= link_to(root_path, class: "logo") do %>
-		<h1>
-			Cor<span>Po</span>Car
-		</h1>
-		<%= ENV['gmail_username'] %>
+		<div class="logo-div">
+		<%= image_tag('logo.png') %>
+			<h1>
+				Cor<span>Po</span>Car
+			</h1>
+		</div>
 	<% end %>
-	<div>
+	<div class="user-header-info">
 		<% if user_signed_in? %>
 			<%= "Hello, #{current_user.name}" %><br>
 			<%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "txt-btn" %>
