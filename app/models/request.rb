@@ -16,6 +16,8 @@ class Request < ActiveRecord::Base
     def request_confirmation
       self.confirmed = true
       self.save
+      trip = self.trip
+      trip.change_available_seats(false)
       Request.where(rider_id: self.rider_id, confirmed: false).each { |r| r.destroy } # deleting other requests made by this rider
     end
 end

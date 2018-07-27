@@ -15,16 +15,6 @@ class MailWorker
           TripMailer.trip_cancel_mail(request.rider, trip).deliver
           request.destroy
         end
-    elsif args[0].eql?('notify')
-      trips = Trip.where(status: 'created')
-      trips.each do |trip|
-        if DateTime.now.utc >= trip.start_time-120
-          requests = Request.where(trip_id: trip.id, confirmed: true)
-          requests.each do |request|
-            TripMailer.trip_notify_mail(request.rider,trip).deliver
-          end
-        end
-      end
     else
 
     end

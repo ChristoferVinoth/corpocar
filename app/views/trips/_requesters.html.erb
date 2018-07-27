@@ -24,7 +24,7 @@
 					<td>
             <% if !current_user.is_rider? %>
   						<% if !request.confirmed && @trip.driver_id==current_user.id && @trip.available_seats > 0%>
-  							<%= link_to 'Confirm', confirm_request_path(req_id: request.id, trip_id: @trip.id), remote: true, id: 'request-confirm', class: 'confirm-btn'%>
+  							<%= link_to 'Confirm', confirm_request_path(req_id: request.id, trip_id: @trip.id), id: 'request-confirm', class: 'confirm-btn'%>
   						<% end %>
             <% else %>
               <% if request.rider_id == current_user.id %>

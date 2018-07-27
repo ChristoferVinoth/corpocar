@@ -20,9 +20,4 @@ class TripMailer < ApplicationMailer
 		mail(to: @rider.email, subject: "Trip Cancelled - #{trip.driver.name}")
 	end
 
-	def trip_notify_mail(rider, trip)
-		@rider = rider
-		@trip = trip
-		mail(to: @rider.email, subject: "Get Ready for your trip")
-	end
 end

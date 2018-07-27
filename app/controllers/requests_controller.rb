@@ -13,15 +13,15 @@ before_filter :adjust_seats, only: :destroy
 
   def confirm_request
       @request.request_confirmation
-      @trip.change_available_seats(false)
       MailWorker.perform_async('confirm', @trip.id, @request.rider_id)
-      render partial: 'trips/requesters'
+      redirect_to trip_path(@trip)
   end
 
   def confirm_mail
     req = Request.find_by_request_token(params[:token])
     if req
       req.request_confirmation
+      MailWorker.perform_async('confirm', req.trip.id, req.rider_id)
       redirect_to root_url
     else
       redirect_to root_url
